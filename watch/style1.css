@@ -1,0 +1,148 @@
+body, html {
+  margin: 0;
+  padding: 0;
+
+}
+
+body {
+  background: #121315;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: #121315; 
+  scroll-behavior: smooth;
+  position: relative;
+
+}
+
+.logo {
+  width: 100%;
+  height: 50px;
+  background: rgba(178, 190, 181,0.5);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.logo > h2 {
+  position: absolute;
+  left: 75px;
+  color: red;
+}
+
+.logo > img {
+  width: 30px;
+  position: absolute;
+  left: 0px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+.logo > h2 {
+  background: linear-gradient(45deg, #E0AC9D 50%, #CA0D22 50%);
+  background-size: 200% auto;  
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  100% {
+    background-position: 200%;
+  }
+}
+
+#watchPlace {
+  width: 100%;
+  height: calc(100% - 50px);
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#film {
+  width: 80%;
+  height: 70%;
+  position: absolute;
+  top: 150px;
+  border: 0px solid red;
+}
+
+#containerBTN, #detailContainer {
+  width: 100%;
+  height: 50px;
+  background: green;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#containerBTN * {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: whitesmoke;
+  padding-left: 20px;
+  text-align: center;
+}
+#submit {
+  color: black;
+  text-align: center;
+  margin-left: 20px;
+  display: none;
+}
+
+select {
+  text-align-last:right;
+  padding-right: 29px;
+  direction: rtl;
+}
+#seasons, #episodes {
+  color: red;
+}
+#seasons option, #episodes option {
+  color: red;
+  padding-left: 29px;
+  text-align: center;
+}
+
+#detailContainer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: whitesmoke;
+  top: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  #containerBTN {
+    height: 100px;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  #episodes {
+    margin-top: 20px;
+  }
+  #film {
+    width: 95%;
+    height: 400px;
+    top: 200px;
+  }
+  #detailContainer {
+    top: 100px;
+    background: red;
+  }
+}
