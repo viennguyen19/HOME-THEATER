@@ -710,8 +710,7 @@ function getSearchdata(url, index, link, season) {
     for (i = 0; i <= 19; i++) {
       nameIS = data.results[i].original_title || data.results[i].name;
       imgpath = imgURL + data.results[i].poster_path;
-      link = data.results[i].media_type == "tv" ?
-        linkTVs + data.results[i].id + season : linkMVs + data.results[i].id;
+      link = data.results[i].media_type == "tv" ? data.results[i].id + ".2" : data.results[i].id;
       if (data.results[i].poster_path == null) {
         imgpath = "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg";
       }
