@@ -2,129 +2,109 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Enjoy!</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Enjoy!</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-	<div class="container">
-
-		<div class="hot">
-			<div class="hotLeft">
-				<h1></h1>
-				<p></p>
-				<div class="clickable">
-					<button class="watchNow">Watch Now</button>
-          <!--<button class="viewInfo">View Info</button> -->
+  <div class="container">
+    <div class="hot">
+      <div class="hotLeft">
+        <h1></h1>
+        <p></p>
+        <div class="clickable">
+          <button class="watchNow">Watch Now</button>
         </div>
       </div>
-        <div class="hotRight">
-          <img src="" alt="thumbnail" class="thumbnail" loading="eager">
-        </div>
+      <div class="hotRight">
+        <img src="" alt="thumbnail" class="thumbnail" loading="eager">
       </div>
-      
-      
-      <div class="watchContent">
-        <h3>Trending Movies</h3>
-        <div class="node1">
-          <div class="prev">&#8668;</div>
-          <div class="content trendingMv"></div>
-          <div class="next">&#8669;</div>
-        </div>
-        
-        <h3>Popular Movies</h3>
-        <div class="node2">
-          <div class="prev">&#8668;</div>
-          <div class="content popularMv"></div>
-          <div class="next">&#8669;</div>
-        </div>
-        
-        <h3>Trending TV</h3>        
-        <div class="node3">
-          <div class="prev">&#8668;</div>
-          <div class="content trendingTv"></div>
-          <div class="next">&#8669;</div>
-        </div>
-        
-        <h3>Popular TV</h3>        
-        <div class="node4">
-          <div class="prev">&#8668;</div>
-          <div class="content popularTv"> </div>
-          <div class="next">&#8669;</div>
-        </div>
-        
-        <h3>Top Rated Movies</h3>
-        <div class="node5">
-          <div class="prev">&#8668;</div>
-          <div class="content topRatedMv"> </div>
-          <div class="next">&#8669;</div>
-        </div>
-        
-        <h3>Top Rated TV</h3>
-        <div class="node6">
-          <div class="prev">&#8668;</div>
-          <div class="content topRatedTv"> </div>
-          <div class="next">&#8669;</div>
-        </div>
-        
-      </div>
-
-      <div class="logo">
-        <img src="./pics/logo.jpg" alt="theather logo">
-        <h2>HOME THEATHER</h2>
-        <div class="search ">
-          <div class="circle"></div>
-          <div class="hand"></div>                    
-        </div>
-      </div>
-      
-    </div>
-    <div class="mysearch hidesearch">
-      <input type="text" id="name" name="name" required size="10" class="nameSearch"> 
-      <div class="searchResult"></div> 
-      <div class="circleWhite">
-        <div class="close1 hideclose">
-              <div class="close2"></div>
-        </div> 
-      </div>
-
-    </div>
-    <div class="videocontainer hideVideo" allowfullscreen="allowfullscreen">
-      <iframe class="iframe"
-        src=""
-        wmode="transparent"
-        type="video/mp4"
-        allow="autoplay; encrypted-media; picture-in-picture;"
-        allowfullscreen="allowfullscreen"
-      ></iframe>
-      <div class="circleWhiteVideo">
-        <div class="close3 "">
-              <div class="close4"></div>
-        </div>  
-      </div>
-
     </div>
 
- <form id="sendData" action="./watch/index.html">
-  <label for="varda"></label>
-  <input type="text" id="liduen" name="liduenaidi" value=""><br><br>
-  <input type="submit" value="Submit" id="letSubmit">
-</form>
+    <div class="watchContent">
+      <h3>Trending Movies</h3>
+      <div class="node1">
+        <div class="prev">&#8668;</div>
+        <div class="content trendingMv"></div>
+        <div class="next">&#8669;</div>
+      </div>
 
+      <h3>Popular Movies</h3>
+      <div class="node2">
+        <div class="prev">&#8668;</div>
+        <div class="content popularMv"></div>
+        <div class="next">&#8669;</div>
+      </div>
 
-<!--
-  
-  
-  
-  
-  
-  
-  
-  -->
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
-<script src="script.js"></script>
-  </body>
+      <h3>Trending TV</h3>
+      <div class="node3">
+        <div class="prev">&#8668;</div>
+        <div class="content trendingTv"></div>
+        <div class="next">&#8669;</div>
+      </div>
+
+      <h3>Popular TV</h3>
+      <div class="node4">
+        <div class="prev">&#8668;</div>
+        <div class="content popularTv"> </div>
+        <div class="next">&#8669;</div>
+      </div>
+
+      <h3>Top Rated Movies</h3>
+      <div class="node5">
+        <div class="prev">&#8668;</div>
+        <div class="content topRatedMv"> </div>
+        <div class="next">&#8669;</div>
+      </div>
+
+      <h3>Top Rated TV</h3>
+      <div class="node6">
+        <div class="prev">&#8668;</div>
+        <div class="content topRatedTv"> </div>
+        <div class="next">&#8669;</div>
+      </div>
+    </div>
+
+    <div class="logo">
+      <img src="./pics/logo.jpg" alt="theather logo" onclick="goToHomePage()">
+      <h2 onclick="goToHomePage()">HOME THEATER</h2>
+      <div class="search ">
+        <div class="circle"></div>
+        <div class="hand"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="mysearch hidesearch">
+    <input type="text" id="name" name="name" required size="10" class="nameSearch">
+    <div class="searchResult"></div>
+    <div class="circleWhite">
+      <div class="close1 hideclose">
+        <div class="close2"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="videocontainer hideVideo" allowfullscreen="allowfullscreen">
+    <iframe class="iframe" src="" wmode="transparent" type="video/mp4"
+      allow="autoplay; encrypted-media; picture-in-picture;" allowfullscreen="allowfullscreen"></iframe>
+    <div class="circleWhiteVideo">
+      <div class="close3 "">
+              <div class=" close4"></div>
+    </div>
+  </div>
+
+  </div>
+  <form id="sendData" action="./watch/index.html">
+    <label for="varda"></label>
+    <input type="text" id="liduen" name="liduenaidi" value=""><br><br>
+    <input type="submit" value="Submit" id="letSubmit">
+  </form>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>

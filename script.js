@@ -2,35 +2,24 @@
 // initial first movie
 function changeBannerInfo(url) {
   let hot = document.querySelector(".hot");
-  let bannerVideo = document.querySelector(".hotLeft");  
+  let bannerVideo = document.querySelector(".hotLeft");
   let watchNow = document.querySelector(".watchNow");
   let thumbnail = document.querySelector(".thumbnail");
   const imgURL = "https://image.tmdb.org/t/p/original/";
   var nameIS = "";
   var imgpath = "";
+  let movieID = -1;
   fetch(url).then(res => res.json()).then(data => {
-    //console.log(data);
     nameIS = data.results[0].original_title || data.results[0].name;
-    bannerVideo.childNodes[1].textContent = nameIS; 
+    bannerVideo.childNodes[1].textContent = nameIS;
     bannerVideo.childNodes[3].textContent = data.results[0].overview;
     imgpath = imgURL + data.results[0].poster_path;
-    hot.style.backgroundImage = `url(${imgpath})`;
+    hot.style.backgroundImage = `url(${imgURL + data.results[0].backdrop_path})`;
     thumbnail.src = imgpath;
-    watchNow.addEventListener("click", function (e) {
+    watchNow.addEventListener("click", function(e) {
       e.preventDefault();
-      /*video.className = "videocontainer";
-      frame.src = "https://www.2embed.org/embed/" + data.results[0].id;
-      frame.setAttribute('allowFullScreen', 'true');
-      document.documentElement.style
-        .setProperty('--opacity-start', '0');
-      document.documentElement.style
-        .setProperty('--opacity-end', '0'); */
-      //window.location.href = './watch/index.html';
-      //post('./watch/index.html', {name: 'Johnny Bravo'});
-
-      gotoWeb(data.results[0].id);
-
-    })    
+      gotoWeb(data.results[0].media_type == "tv" ? data.results[0].id + ".2" : data.results[0].id + ".4");
+    })
   })
 }
 
@@ -43,12 +32,12 @@ window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset;
   if (currentScroll < 0) {
     document.getElementsByClassName("logo")[0].style.backgroundColor = "#121315";
-        document.getElementsByClassName("hand")[0].style.backgroundColor = "whitesmoke";
+    document.getElementsByClassName("hand")[0].style.backgroundColor = "whitesmoke";
     document.getElementsByClassName("circle")[0].style.borderColor = "whitesmoke";
   }
   if (currentScroll > lastScroll) {
     document.getElementsByClassName("logo")[0].style.backgroundColor = "#121315";
-        document.getElementsByClassName("hand")[0].style.backgroundColor = "whitesmoke";
+    document.getElementsByClassName("hand")[0].style.backgroundColor = "whitesmoke";
     document.getElementsByClassName("circle")[0].style.borderColor = "whitesmoke";
 
   } else {
@@ -71,29 +60,14 @@ function createPoster(parentNode, imgPath, title, index, name) {
   let img = document.createElement("img");
   img.src = imgPath;
   img.alt = title;
-
-  //img.style.height = "300px";
   img.draggable = false;
   node.appendChild(img);
   let nestedDIV = document.createElement("div");
   nestedDIV.className = "movieName";
   nestedDIV.textContent = "movieName";
-  /*var nestedP = document.createElement("p");
-  nestedP.textContent = title;
-  nestedDIV.appendChild(nestedP);*/
   node.appendChild(nestedDIV);
   parentNode.appendChild(node);
 }
-
-
-
-/*let myParents = [];
-myParents.push(parentTrendingMv);
-myParents.push(parentPopularMv);
-myParents.push(parentTopRatedMv);
-myParents.push(parentTrendingTv);
-myParents.push(parentPopularTv);
-myParents.push(parentTopRatedTv);*/
 
 // get parents for adding poster
 const parentTrendingMv = document.querySelector(".trendingMv");
@@ -113,8 +87,6 @@ let topRatedTvClassName = "toprateTVs top";
 
 // create empty posters
 function emptyPoster() {
-  //var nameIS = "";
-  //var imgpath = "";
   for (i = 0; i <= 19; i++) {
     createPoster(parentTrendingMv, "", "", i, trendingMvClassName + i + " resize");
     createPoster(parentPopularMv, "", "", i, popularMvClassName + i + " resize");
@@ -136,17 +108,17 @@ function displayPosters() {
   for (i = 0; i <= 5; i++) {
     for (j = 0; j < ratio; j++) {
       temp.item(i).children[j].style.display = "";
-      //temp.item(i).children[j].style.minWidth = "180";
     }
     for (j = ratio; j < 20; j++) {
       temp.item(i).children[j].style.display = "none";
     }
   }
 }
+
 displayPosters();
 
 /* Resize width content */
-window.addEventListener("resize", function (event) {
+window.addEventListener("resize", function(event) {
   displayPosters();
 })
 
@@ -162,8 +134,8 @@ let topRatedTvIndex = Array.from(Array(20).keys());
 let trendingMvScroll = document.querySelector(".trendingMv");
 trendingMvScroll.addEventListener('mousedown', (e) => {
   let initial = e.clientX;
-  this.onmouseup = function (e) {
-    handleLR(e.clientX, initial, 0, trendingMvIndex);    
+  this.onmouseup = function(e) {
+    handleLR(e.clientX, initial, 0, trendingMvIndex);
   }
 });
 
@@ -199,8 +171,8 @@ popularMvScroll.addEventListener('touchend', e => {
 
 popularMvScroll.addEventListener('mousedown', (e) => {
   let initial = e.clientX;
-  this.onmouseup = function (e) {
-    handleLR(e.clientX, initial, 1, popularMvIndex);    
+  this.onmouseup = function(e) {
+    handleLR(e.clientX, initial, 1, popularMvIndex);
   }
 });
 
@@ -208,7 +180,7 @@ popularMvScroll.addEventListener('mousedown', (e) => {
 let trendingTvScroll = document.querySelector(".trendingTv");
 trendingTvScroll.addEventListener('mousedown', (e) => {
   let initial = e.clientX;
-  this.onmouseup = function (e) {
+  this.onmouseup = function(e) {
     handleLR(e.clientX, initial, 2, trendingTvIndex);
   }
 });
@@ -231,7 +203,7 @@ trendingTvScroll.addEventListener('touchend', e => {
 let popularTvScroll = document.querySelector(".popularTv");
 popularTvScroll.addEventListener('mousedown', (e) => {
   let initial = e.clientX;
-  this.onmouseup = function (e) {
+  this.onmouseup = function(e) {
     handleLR(e.clientX, initial, 3, popularTvIndex);
   }
 });
@@ -254,7 +226,7 @@ popularTvScroll.addEventListener('touchend', e => {
 let topRatedMvScroll = document.querySelector(".topRatedMv");
 topRatedMvScroll.addEventListener('mousedown', (e) => {
   let initial = e.clientX;
-  this.onmouseup = function (e) {
+  this.onmouseup = function(e) {
     handleLR(e.clientX, initial, 4, topRatedMvIndex);
   }
 });
@@ -275,9 +247,9 @@ topRatedMvScroll.addEventListener('touchend', e => {
 
 // For Top Rated TV
 let topRatedTvScroll = document.querySelector(".topRatedTv");
-topRatedTvScroll.addEventListener('mousedown', (e) => {  
+topRatedTvScroll.addEventListener('mousedown', (e) => {
   let initial = e.clientX;
-  this.onmouseup = function (e) {
+  this.onmouseup = function(e) {
     handleLR(e.clientX, initial, 5, topRatedTvIndex);
   }
 });
@@ -298,7 +270,7 @@ topRatedTvScroll.addEventListener('touchend', e => {
 
 // Handle left and right
 function handleLR(left, right, index, which) {
-  
+
   var width = window.innerWidth
     || document.documentElement.clientWidth
     || document.body.clientWidth;
@@ -350,12 +322,11 @@ function goLeft(ratio, array) {
 
 function changePosters(temp, index, ratio, array) {
   for (j = 0; j < ratio; j++) {
-      temp.item(index).children[array[j]].style.display = "";
-      //temp.item(index).children[array[j]].style.minWidth = "180px";
+    temp.item(index).children[array[j]].style.display = "";
   }
   for (j = ratio; j < 20; j++) {
 
-      temp.item(index).children[array[j]].style.display = "none";
+    temp.item(index).children[array[j]].style.display = "none";
   }
 }
 
@@ -453,8 +424,6 @@ function getdata(url, index, link, season) {
       temp.item(index).children[i].children[1].textContent = nameIS;
       temp.item(index).children[i].children[1].style.color = "white";
       temp.item(index).children[i].children[0].src = imgpath;
-      //console.log(imgpath);
-      //temp.item(index).children[i].href = link + data.results[i].id + season;
       temp.item(index).children[i].href = data.results[i].id + "." + index;
 
     }
@@ -477,10 +446,8 @@ function getdata0(url, index, link, season) {
       temp.item(index).children[i].children[1].textContent = nameIS;
       temp.item(index).children[i].children[1].style.color = "white";
       temp.item(index).children[i].children[0].src = imgpath;
-      //console.log(imgpath);
-      //temp.item(index).children[i].href = link + data.results[i].id + season;
       temp.item(index).children[i].href = data.results[i].id + "." + index;
-      
+
     }
   })
 }
@@ -500,20 +467,10 @@ function getdata01(url, index, link, season) {
       temp.item(index).children[i].children[1].textContent = nameIS;
       temp.item(index).children[i].children[1].style.color = "white";
       temp.item(index).children[i].children[0].src = imgpath;
-      //console.log(imgpath);
-      //temp.item(index).children[i].href = link + data.results[i].id + season;
       temp.item(index).children[i].href = data.results[i].id + "." + index;
     }
   })
 }
-
-/*
-getdata(trendingMVs, 0, linkMVs, "");
-getdata(popularMVs, 1, linkMVs, "");
-getdata(trendingTVs, 2, linkTVs, season);
-getdata(popularTVs, 3, linkTVs, season);
-getdata(topRMVs, 4, linkMVs, "");
-getdata(topRTVs, 5, linkTVs, season);*/
 
 const myTimeout = setTimeout((() => {
   getdata(trendingMVs, 0, linkMVs, "");
@@ -596,7 +553,7 @@ const myTimeout501 = setTimeout((() => {
 
 
 /* Prevent drag images */
-window.ondragstart = function () { return false }
+window.ondragstart = function() { return false }
 
 let searchInput = document.querySelector(".nameSearch");
 const searchLink = "https://api.themoviedb.org/3/search/multi?";
@@ -625,7 +582,6 @@ search[0].addEventListener("click", () => {
   }
 })
 
-
 let circleWhite = document.querySelector(".circleWhite");
 close1.addEventListener("click", () => {
   if (offSearch) {
@@ -646,12 +602,10 @@ close1.addEventListener("click", () => {
 })
 
 var userInput = "";
-searchInput.addEventListener("keyup", function (event) {
+searchInput.addEventListener("keyup", function(event) {
   if (event.key === "Enter" || event.keyCode === 13) {
-    //console.log(searchInput.value);
     userInput = searchInput.value;
     console.log(searchLink + API_KEY + "&query=" + searchInput.value);
-    //searchInput.style.display = "none";
     getSearchdata(searchLink + API_KEY + "&query=" + searchInput.value, "", "", season);
     var width = window.innerWidth
       || document.documentElement.clientWidth
@@ -668,7 +622,7 @@ searchInput.addEventListener("keyup", function (event) {
   }
 })
 
-window.addEventListener("resize", function (event) {
+window.addEventListener("resize", function(event) {
   getSearchdata(searchLink + API_KEY + "&query=" + searchInput.value, "", "", season);
   var width = window.innerWidth
     || document.documentElement.clientWidth
@@ -684,19 +638,10 @@ window.addEventListener("resize", function (event) {
   }
 })
 
-
-
-
-
 let searchResult = document.querySelector(".searchResult");
 for (k = 0; k <= 19; k++) {
   createPoster(searchResult, "", "", k, "view");
-  //console.log("test");
-
   searchResult.children[k].style.display = "none";
-
-  //console.log(searchResult.children);
-  //console.log(width);
 }
 
 function getSearchdata(url, index, link, season) {
@@ -705,12 +650,11 @@ function getSearchdata(url, index, link, season) {
   var nameIS = "";
   var imgpath = "";
   fetch(url).then(res => res.json()).then(data => {
-    //console.log(data.results[0].media_type);
     console.log(url);
     for (i = 0; i <= 19; i++) {
       nameIS = data.results[i].original_title || data.results[i].name;
       imgpath = imgURL + data.results[i].poster_path;
-      link = data.results[i].media_type == "tv" ? data.results[i].id + ".2" : data.results[i].id;
+      link = data.results[i].media_type == "tv" ? data.results[i].id + ".2" : data.results[i].id + ".4";
       if (data.results[i].poster_path == null) {
         imgpath = "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg";
       }
@@ -733,19 +677,9 @@ let a = document.querySelectorAll("a");
 let video = document.querySelector(".videocontainer");
 let frame = document.querySelector(".iframe");
 for (i = 0; i < a.length; i++) {
-  a[i].addEventListener("click", function (e) {
+  a[i].addEventListener("click", function(e) {
     e.preventDefault();
-    /*
-    video.className = "videocontainer";
-    frame.src = this.href;
-    frame.setAttribute('allowFullScreen', 'true');
-    document.documentElement.style
-        .setProperty('--opacity-start', '0');
-    document.documentElement.style
-        .setProperty('--opacity-end', '0');  */
-    //console.log("my id is: " + this.href);
     let nowLink = this.href.slice(32, this.href.length);
-    //console.log(nowLink);
     gotoWeb(nowLink);
   })
 }
@@ -755,36 +689,29 @@ circleWhiteVideo.addEventListener("click", () => {
   video.className = "videocontainer hideVideo";
   frame.src = "";
   document.documentElement.style
-        .setProperty('--opacity-start', '0.7');
+    .setProperty('--opacity-start', '0.7');
   document.documentElement.style
-        .setProperty('--opacity-end', '1');   
+    .setProperty('--opacity-end', '1');
 })
-
-
-
 
 // search Hover
 search[0].addEventListener("mouseover", () => {
   search[0].classList.add("ani");
 });
 
-
-
-
 let listIMG = document.querySelectorAll('a > img');
-for(l=0; l<100; l++) {
-  if ((l>6 && l<=19) || (l>26 && l<=39) || (l>46 && l<=59) || (l>66 && l<=79) || (l>86 && l<=99)) {
+for (l = 0; l < 100; l++) {
+  if ((l > 6 && l <= 19) || (l > 26 && l <= 39) || (l > 46 && l <= 59) || (l > 66 && l <= 79) || (l > 86 && l <= 99)) {
     listIMG[l].loading = "lazy";
   }
   console.log(listIMG[l].loading);
 }
 
-
-
-
 function gotoWeb(idFilm) {
-  document.getElementById("liduen").value = idFilm;  
+  document.getElementById("liduen").value = idFilm;
   document.getElementById("sendData").submit();
 }
 
-
+function goToHomePage() {
+  window.location = './index.html';
+}

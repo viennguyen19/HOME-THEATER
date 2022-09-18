@@ -22,7 +22,6 @@ body {
 .hot {
   width: 100vw;
   height: 100vh;
-  //background-image: url(https://www.joblo.com/wp-content/uploads/2021/11/ridley-scott-speaks-on-the-poor-box-office-performance-of-the-last-duel-1024x538.jpeg);
   display: flex;
   flex-direction: row;
   background-repeat:no-repeat;
@@ -33,7 +32,6 @@ body {
   width: 50%;
   height: 100%;
   background: rgba(47,79,79,0.5);
-
   color: whitesmoke;
   display: flex;
   flex-direction: column;
@@ -93,7 +91,6 @@ body {
 .watchContent {
   width: 99vw;
   background: #121315;
-
   display: block;
   color: whitesmoke;
   overflow: auto;
@@ -114,13 +111,9 @@ body {
   flex-direction: row;
   justify-content: center;
   position: relative;
-  //overflow: hidden;
   user-select: none;
   -moz-user-select: none;
 }
-
-
-
 
 .trendMVs, .popularMVs, .toprateMVs, .trendTVs, .popularTVs, .toprateTVs {
   width: 180px;
@@ -133,10 +126,8 @@ body {
   -moz-user-select: none;
   font-size: 20px;
   opacity: 0.7;  
-  animation: appear0 1s linear 1;
-  
+  animation: appear0 1s linear 1;  
 }
-
 
 @keyframes appear0 {
   0% {
@@ -164,13 +155,11 @@ body {
   }
 }
 
-
 .trendMVs img, .popularMVs img, .toprateMVs img, .trendTVs img, .popularTVs img, .toprateTVs img {
   width: 100%;
   height: 310px;
   pointer-events: none;
 }
-
 
 .trendMVs:hover,
 .popularMVs:hover,
@@ -200,7 +189,6 @@ a {
   text-decoration:none;
 }
 
-
 .logo {
   width: 100%;
   height: 50px;
@@ -209,8 +197,7 @@ a {
   top: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  
+  align-items: center;  
 }
 
 .logo > h2 {
@@ -226,6 +213,11 @@ a {
   margin-left: 10px;
   border-radius: 50%;
 }
+
+.logo > img:hover, .logo > h2:hover {
+  cursor: pointer;
+}
+
 .search {
   width: 29px;
   height: 35px;
@@ -265,7 +257,6 @@ a {
   bottom: 0;
   z-index: 10;
 }
-
 
 .circleWhite, .circleWhiteVideo {
   width: 40px;
@@ -501,8 +492,6 @@ a {
   }
 }
 
-
-
 /* hide scrollbar but allow scrolling */
 .mysearch {
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
@@ -513,7 +502,6 @@ a {
 .mysearch::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
 }
-
 
 .logo > h2 {
   background: linear-gradient(45deg, #E0AC9D 50%, #CA0D22 50%);
@@ -532,7 +520,6 @@ a {
   }
 }
 
-
 #sendData {
   width: 1px;
   height: 1px;
@@ -543,4 +530,10 @@ a {
   left: -100px;
   opacity: 0;
   display: none;
+}
+
+.watchNow:hover {
+  scale: 1.05;
+  background: lightgray;
+  transition: 0.5s;
 }
